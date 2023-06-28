@@ -142,7 +142,7 @@ variable "log_eabled" {
 }
 
 variable "log_type" {
-  type = string
+  type        = string
   description = " (Required) Type of OpenSearch log. Valid values: INDEX_SLOW_LOGS, SEARCH_SLOW_LOGS, ES_APPLICATION_LOGS, AUDIT_LOGS."
 }
 
@@ -153,11 +153,11 @@ variable "cloudwatch_log_group_arn" {
 }
 
 variable "security_ids" {
-  type = list(string)
+  type        = list(string)
   description = " (Optional) List of VPC Security Group IDs to be applied to the OpenSearch domain endpoints. If omitted, the default Security Group for the VPC will be used"
 }
 
 variable "subnet_ids" {
-  type = list(string)
+  type        = list(string)
   description = "(Required) List of VPC Subnet IDs for the OpenSearch domain endpoints to be created in."
 }
