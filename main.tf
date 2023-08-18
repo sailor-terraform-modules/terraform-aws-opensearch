@@ -73,3 +73,18 @@ resource "aws_opensearch_domain" "domain" {
     Domain = "TestDomain"
   }
 }
+resource "aws_secretsmanager_secret" "secret" {
+  name       = var.secret_name
+  kms_key_id = var.kms_key_arn
+}
+
+resource "aws_secretsmanager_secret_version" "secret_version" {
+  secret_id     = aws_secretsmanager_secret.secret.id
+  secret_string = <<EOF
+   {
+    "hostname": "${aws_opensearch_domain.domain.endpoint}"
+    "username": "${var.master_username}",
+    "password": "${var.master_password}"
+   }
+EOF
+}
